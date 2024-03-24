@@ -21,7 +21,7 @@
                                 
                             </div>
                             <div class="modal-body">
-                                <form action="" method="POST">
+                                <form action="{{route('createproducts')}}" method="POST">
                                     @csrf
                                     <input type="text" class="form-control" name="ProductName">
                                     <button type="submit" class="btn btn-info mt-3">save</button>
@@ -31,6 +31,32 @@
                             </div>
 
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5 text-dark">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-bordered table-light">
+                            <thead>
+                              <tr >
+                                <th scope="col">Product ID</th>
+                                <th scope="col">Product Name</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                @foreach ($products as $product)
+                                    <tr >
+                                        <th scope="row" class="text-dark">{{$product->id}}</th>
+                                        <td class="text-dark">{{$product->ProductName}}</td>
+                                    </tr>
+                                @endforeach
+                              </tr>
+                            </tbody>
+                          </table>
                     </div>
                 </div>
             </div>

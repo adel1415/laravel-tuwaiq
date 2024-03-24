@@ -16,7 +16,7 @@
             <div class="card">
                 <div class="card-body">
                     <h1 class="text-center"><i class="bi bi-receipt-cutoff text-success"></i></h1>
-                    <h4 class="text-dark text-center">Invoices</h4>
+                    <h4 class="text-dark text-center">Products</h4>
                 </div>
             </div>
         </div>

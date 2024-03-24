@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class Dashboard extends Controller
 {
@@ -15,8 +16,16 @@ class Dashboard extends Controller
         return view('dashboard.index');
     }
 
-    public function GetProducts(){
 
-        return view('dashboard.products');
+    public function GetProducts(){
+        $products = Product::all();
+        return view('dashboard.products', compact('products'));
+    }
+
+    public function CreateProducts(Request $request){
+        $products = Product::create([
+            'ProductName' => $request->ProductName
+        ]);
+        return Redirect('/dashboard/products');
     }
 }
