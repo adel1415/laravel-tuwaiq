@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Dashboard;
 
 Route::get('/', function () {
     return view('welcome');
@@ -8,21 +9,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [Dashboard::class, 'index'])->name('index');
 
-Auth::routes();
+Route::get('/dashboard/products', [Dashboard::class, 'GetProducts'])->name('products');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/dashboard' , function(){
-    return view('Dashboard.index');
-})->name('index');
-
-
-Route::get('/dashboard/products' , function(){
-    return view('Dashboard.products');
-})->name('products');
