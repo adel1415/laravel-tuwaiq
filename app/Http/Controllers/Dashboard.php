@@ -28,4 +28,23 @@ class Dashboard extends Controller
         ]);
         return Redirect('/dashboard/products');
     }
+
+    public function Del($id){
+        $products = Product::find($id);
+        $products->delete();
+        return Redirect('/dashboard/products');
+    }
+
+    public function Edit(Request $request){
+        $products = Product::find($request->productId);
+        $products->productName = $request->productName;
+        $products->save();
+        return Redirect('/dashboard/products');
+    }
+
+    public function Search(Request $request)
+    {
+        $products = Product::where('productName', 'like', '%' . $request->search . '%')->get();
+        return view('dashboard.products', compact('products'));
+    }
 }
