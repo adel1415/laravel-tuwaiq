@@ -37,14 +37,14 @@
             </div>
         </div>
         <div class="row mt-5">
-            <div class="col">
+            <div class="col-8">
                 <form action="{{ route('search') }}" method="GET">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Search" name="search">
+                        <input type="text" class="form-control me-3" placeholder="Search" name="search">
                         <button class="btn btn-primary" type="submit">Search</button>
                     </div>
                 </form>
-                <a href="{{ url('/dashboard/products') }}" class="btn btn-primary" type="submit">Show All Products</a>
+                <a href="{{ url('/dashboard/products') }}" class="btn btn-secondary" type="submit">Show All Products</a>
             </div>
         </div>
         <div class="row mt-5 text-dark">

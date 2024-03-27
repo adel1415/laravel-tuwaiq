@@ -19,3 +19,7 @@ Route::get('/del/{id}' , [Dashboard::class, 'del'])->name('del');
 Route::get('/edit' , [Dashboard::class, 'edit'])->name('edit');
 
 Route::get('/product/search' , [Dashboard::class, 'Search'])->name('search');
+
+Route::get('/test', [Dashboard::class, 'test'])->name('test');
+
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

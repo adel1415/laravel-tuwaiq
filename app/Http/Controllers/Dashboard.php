@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 
 class Dashboard extends Controller
 {
@@ -46,5 +47,14 @@ class Dashboard extends Controller
     {
         $products = Product::where('productName', 'like', '%' . $request->search . '%')->get();
         return view('dashboard.products', compact('products'));
+    }
+
+    public function test(){
+        // $data = DB::select('SELECT * FROM products');
+                // $data = DB::table('products')->orderBy('id', 'desc')->get();
+                $data = DB::table('products')
+                ->join('product_details', 'products.id' , '=', 'products.id')
+                ->get();
+                return $data;
     }
 }
