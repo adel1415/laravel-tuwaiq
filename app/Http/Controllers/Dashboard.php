@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
+use App\Models\ProductDetails;
 
 class Dashboard extends Controller
 {
@@ -49,12 +50,35 @@ class Dashboard extends Controller
         return view('dashboard.products', compact('products'));
     }
 
-    public function test(){
-        // $data = DB::select('SELECT * FROM products');
-                // $data = DB::table('products')->orderBy('id', 'desc')->get();
-                $data = DB::table('products')
-                ->join('product_details', 'products.id' , '=', 'products.id')
-                ->get();
-                return $data;
+    public function GetProductsDetails(){
+        // $productsdetails = ProductDetails::all();
+        $products = Product::all();
+        $productsdetails = DB::table('product_details')
+        ->join('products', 'product_details.product_id', '=', 'products.id')
+        ->select('product_details.*', 'products.productName')
+        ->get();
+        // return $productsdetails;
+        return view('Dashboard.productdeltails', compact('productsdetails' , 'products'));
+
+    }
+
+    public function CreateProductDetails(Request $request){
+        // $validated = $request->validate([
+        //     'product_id' => 'required|exists:products,id',
+        //     'qty' => 'required|numeric',
+        //     'price' => 'required|numeric',
+        //     'description' => 'required|max:255',
+        //     'color' => 'required|max:255',
+
+        // ]);
+
+        $productsdetails = ProductDetails::create([
+            'product_id' => $request->product_id,
+            'qty' => $request->qty,
+            'description' => $request->description,
+            'color' => $request->color,
+            'price' => $request->price,
+        ]);
+        return redirect()->back()->with('message', 'Product Details Created Successfully');
     }
 }

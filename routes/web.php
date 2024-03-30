@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard;
+use App\Http\Controllers\Shopping;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,6 +21,9 @@ Route::get('/edit' , [Dashboard::class, 'edit'])->name('edit');
 
 Route::get('/product/search' , [Dashboard::class, 'Search'])->name('search');
 
-Route::get('/test', [Dashboard::class, 'test'])->name('test');
+Route::get('/dashboard/getproductsdetails' , [Dashboard::class, 'GetProductsDetails'])->name('product-details');
+Route::post('/productdetails/createproductdetails' , [Dashboard::class, 'CreateProductDetails'])->name('createproductdetails');
+
+Route::get('/shopping/showitems' , [Shopping::class, 'ShowListItemPhone'])->name('showitems');
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
