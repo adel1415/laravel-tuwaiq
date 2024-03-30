@@ -2,7 +2,22 @@
 
 @section('content')
     <div class="container">
+
         <div class="row mt-5">
+            @if (session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li class="text-dark">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="col">
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -10,8 +25,8 @@
                 </button>
 
                 <!-- Modal -->
-                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -38,7 +53,7 @@
         </div>
         <div class="row mt-5">
             <div class="col-8">
-                <form action="{{ route('search') }}" method="GET">
+                <form action="{{ route('products') }}" method="GET">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control me-3" placeholder="Search" name="search">
                         <button class="btn btn-primary" type="submit">Search</button>
@@ -81,8 +96,8 @@
                 </div>
 
                 <!-- Modal -->
-                <div class="modal fade text-dark" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel"
-                    aria-hidden="true">
+                <div class="modal fade text-dark" id="editProductModal" tabindex="-1"
+                    aria-labelledby="editProductModalLabel" aria-hidden="true">
                     <div class="modal-dialog text-dark">
                         <div class="modal-content">
                             <div class="modal-header text-dark">
@@ -97,7 +112,8 @@
                                         <label for="productName" class="form-label text-dark">Product Name</label>
                                         <input type="text" class="form-control" id="productName" name="productName">
                                     </div>
-                                    <button type="submit" class="btn btn-primary" onclick="saveChanges()">Save changes</button>
+                                    <button type="submit" class="btn btn-primary" onclick="saveChanges()">Save
+                                        changes</button>
                                 </form>
                             </div>
                         </div>

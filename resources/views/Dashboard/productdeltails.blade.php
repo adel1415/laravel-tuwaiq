@@ -4,13 +4,22 @@
 
 
     <div class="container">
-        @if(session()->has('message'))
-    <div class="alert alert-success">
-        {{ session()->get('message') }}
-    </div>
-@endif
+        @if (session()->has('message'))
+            <div class="alert alert-success">
+                {{ session()->get('message') }}
+            </div>
+        @endif
         <div class="row mt-5">
             <div class="col">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li class="text-dark">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                     Add New Product Details
@@ -32,31 +41,33 @@
                                     @csrf
                                     <div class="col">
                                         <label for="name" class="form-label text-dark">Product Name</label>
-                                        <select class="form-select text-dark" aria-label="Default select example" name="product_id">
+                                        <select  class="form-select text-dark" aria-label="Default select example"
+                                            name="product_id" required>
                                             <option selected>Open this select menu</option>
                                             @foreach ($products as $product)
-                                                <option  value="{{ $product->id }}">{{ $product->ProductName }}</option>
+                                                <option value="{{ $product->id }}">{{ $product->ProductName }}</option>
                                             @endforeach
-                                        </select>   
+                                        </select>
                                     </div>
                                     <div class="row ">
                                         <div class="col">
                                             <label for="qty" class="form-label text-dark">Quantity</label>
-                                            <input type="text" id="qty" class="form-control @error('qty') is-invalid @enderror" name="qty">
+                                            <input type="text" id="qty" required
+                                                class="form-control @error('qty') is-invalid @enderror" name="qty">
                                         </div>
                                         <div class="col">
                                             <label for="description" class="form-label text-dark">Description</label>
-                                            <input type="text" id="description" class="form-control" name="description">
+                                            <input type="text" id="description" class="form-control" name="description" required>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col ">
                                             <label for="color" class="form-label text-dark">Color</label>
-                                            <input type="text" id="color" class="form-control" name="color">
+                                            <input type="text" id="color" class="form-control" name="color" required>
                                         </div>
                                         <div class="col ">
                                             <label for="price" class="form-label text-dark">Price</label>
-                                            <input type="text" id="id" class="form-control" name="price">
+                                            <input type="text" id="id" class="form-control" name="price" required>
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-info mt-3">save</button>
@@ -73,13 +84,13 @@
         </div>
         <div class="row mt-5">
             <div class="col-8">
-                <form action="{{ route('search') }}" method="GET">
+                <form action="" method="GET">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control me-3" placeholder="Search" name="search">
                         <button class="btn btn-primary" type="submit">Search</button>
                     </div>
                 </form>
-                <a href="{{ url('/dashboard/products') }}" class="btn btn-secondary" type="submit">Show All Products</a>
+                <a href="{{ url('/dashboard/products') }}" class="btn btn-secondary" type="submit">Show All Products Details</a>
             </div>
         </div>
         <div class="row mt-5 text-dark">
@@ -115,13 +126,13 @@
                                             data-name="{{ $product->productName }}"><i
                                                 class="fa fa-edit text-success"></i></a>
 
-                                    {{-- <td><a href="{{ route('del', ['id' => $product->id]) }}"><i
+                                        {{-- <td><a href="{{ route('del', ['id' => $product->id]) }}"><i
                                                 class="fa fa-trash text-danger"></i></a>
                                         {{-- <a id="edit" href="{{}}"><i class="fa fa-edit text-success"></i></a></td> --}}
                                         {{-- <a href="#" class="edit" data-bs-toggle="modal"
                                             data-bs-target="#editProductModal" data-id="{{ $product->id }}"
                                             data-name="{{ $product->ProductName }}"><i
-                                                class="fa fa-edit text-success"></i></a> --}} 
+                                                class="fa fa-edit text-success"></i></a> --}}
 
                                 </tr>
                                 @endforeach
@@ -132,8 +143,8 @@
                 </div>
 
                 <!-- Modal -->
-                <div class="modal fade text-dark" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel"
-                    aria-hidden="true">
+                <div class="modal fade text-dark" id="editProductModal" tabindex="-1"
+                    aria-labelledby="editProductModalLabel" aria-hidden="true">
                     <div class="modal-dialog text-dark">
                         <div class="modal-content">
                             <div class="modal-header text-dark">
@@ -148,7 +159,8 @@
                                         <label for="productName" class="form-label text-dark">Product Name</label>
                                         <input type="text" class="form-control" id="productName" name="productName">
                                     </div>
-                                    <button type="submit" class="btn btn-primary" onclick="saveChanges()">Save changes</button>
+                                    <button type="submit" class="btn btn-primary" onclick="saveChanges()">Save
+                                        changes</button>
                                 </form>
                             </div>
                         </div>
