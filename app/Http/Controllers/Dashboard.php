@@ -21,9 +21,9 @@ class Dashboard extends Controller
 
     public function GetProducts(Request $request){
         if($request->search){
-            $products = Product::where('productName', 'like', '%' . $request->search . '%')->get();
+            $products = Product::where('productName', 'like', '%' . $request->search . '%')->paginate(5);
         }else{
-            $products = Product::all();
+            $products = Product::paginate(5);
         }
         return view('dashboard.products', compact('products'));
     }
@@ -83,5 +83,10 @@ class Dashboard extends Controller
             'price' => $request->price,
         ]);
         return redirect()->back()->with('message', 'Product Details Created Successfully');
+    }
+    public function DeleteDetails($id){
+        $productsdetails = ProductDetails::find($id);
+        $productsdetails->delete();
+        return redirect()->back();
     }
 }

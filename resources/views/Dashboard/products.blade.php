@@ -1,6 +1,7 @@
 @extends('layouts.base')
 
 @section('content')
+
     <div class="container">
 
         <div class="row mt-5">
@@ -119,10 +120,12 @@
                         </div>
                     </div>
                 </div>
-
+                
             </div>
+            
         </div>
     </div>
+    {{ $products->withQueryString()->links() }} 
 @endsection
 
 <script>

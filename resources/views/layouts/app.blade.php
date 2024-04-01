@@ -12,6 +12,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link href="{{ asset('/css/checkout.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -141,5 +142,7 @@
             @yield('content')
         </main>
     </div>
+    <script type="text/javascript" src="{{ asset('/js/checkout.js') }}"></script>
+
 </body>
 </html>

@@ -23,7 +23,9 @@ Route::get('/edit' , [Dashboard::class, 'edit'])->name('edit');
 
 Route::get('/dashboard/getproductsdetails' , [Dashboard::class, 'GetProductsDetails'])->name('product-details');
 Route::post('/productdetails/createproductdetails' , [Dashboard::class, 'CreateProductDetails'])->name('createproductdetails');
-
+Route::get('products/delete/{id}', [Dashboard::class, 'DeleteDetails'])->name('delete_details');
 Route::get('/shopping/showitems' , [Shopping::class, 'ShowListItemPhone'])->name('showitems');
+Route::get('/shopping/showdetails/{id}' , [Shopping::class, 'ShowDetailsPhone'])->name('showdetails');
+
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

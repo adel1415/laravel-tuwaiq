@@ -118,7 +118,7 @@
                                     <td class="text-dark">{{ $product->description }}</td>
                                     <td class="text-dark">{{ $product->color }}</td>
                                     <td class="text-dark">{{ $product->price }}</td>
-                                    <td><a href="{{ route('del', ['id' => $product->id]) }}"><i
+                                    <td><a href="{{ route('delete_details', ['id' => $product->id]) }}"><i
                                                 class="fa fa-trash text-danger"></i></a>
                                         {{-- <a id="edit" href="{{}}"><i class="fa fa-edit text-success"></i></a></td> --}}
                                         <a href="#" class="edit" data-bs-toggle="modal"
