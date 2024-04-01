@@ -16,8 +16,10 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+
 </head>
-<body>
+<body dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
     <div id="app">
         <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
@@ -50,10 +52,10 @@
         <!-- Left links -->
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="#">Dashboard</a>
+            <a class="nav-link" href="#">{{__('message.Dashboard')}}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Team</a>
+            <a class="nav-link" href="#">{{__('message.Team')}}</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Projects</a>
@@ -71,6 +73,18 @@
         </a>
   
         <!-- Notifications -->
+
+        <div class="dropdown me-3">
+          <li class="nav-item dropdown p-1" style="display: block">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              اللغة
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item text-center" href="{{url('language/ar')}}">العربية   <img src="\assets\images\sa.jpg" class="rounded-circle" width="30" height="30"  alt="">  </a></li>
+              <li><a class="dropdown-item text-center" href="{{url('language/en')}}">English <img src="\assets\images\en.jpg" class="rounded-circle" width="30" height="30"  alt=""> </a></li>  
+            </ul>
+          </li>
+        </div>
         <div class="dropdown">
           <a
             data-mdb-dropdown-init
@@ -81,24 +95,12 @@
             aria-expanded="false"
           >
             <i class="fas fa-bell"></i>
-            <span class="badge rounded-pill badge-notification bg-danger">1</span>
+            <span class="badge rounded-pill badge-notification bg-danger">{{Session::get('count')}}</span>
           </a>
-          <ul
-            class="dropdown-menu dropdown-menu-end"
-            aria-labelledby="navbarDropdownMenuLink"
-          >
-            <li>
-              <a class="dropdown-item" href="#">Some news</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Another news</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </li>
-          </ul>
+          
         </div>
         <!-- Avatar -->
+        
         <div class="dropdown">
           <a
             data-mdb-dropdown-init
@@ -131,6 +133,8 @@
             </li>
           </ul>
         </div>
+
+        
       </div>
       <!-- Right elements -->
     </div>

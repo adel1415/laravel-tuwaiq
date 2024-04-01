@@ -89,4 +89,6 @@ class Dashboard extends Controller
         $productsdetails->delete();
         return redirect()->back();
     }
+
+    
 }

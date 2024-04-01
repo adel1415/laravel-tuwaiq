@@ -4,6 +4,7 @@
 <section class="py-5">
     <div class="container">
       <div class="row gx-5">
+        
         <aside class="col-lg-6">
           <div class="border rounded-4 mb-3 d-flex justify-content-center">
             <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image">
@@ -15,6 +16,20 @@
           <!-- gallery-wrap .end// -->
         </aside>
         <main class="col-lg-6">
+          @if (session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li class="text-dark">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
           <div class="ps-lg-3">
             <h4 class="title text-dark">
               {{$data->ProductName}}
@@ -74,8 +89,8 @@
                 </div>
               </div>
             </div>
-            <a href="#" class="btn btn-warning shadow-0"> Buy now </a>
-            <a href="#" class="btn btn-primary shadow-0"> <i class="me-1 fa fa-shopping-basket"></i> Add to cart </a>
+            <a href="#" class="btn btn-warning shadow-0"> {{__('message.Buy_Now')}} </a>
+            <a href="{{route('add-to-cart', $data->id)}}" class="btn btn-primary shadow-0"> <i class="me-1 fa fa-shopping-basket"></i> Add to cart </a>
             <a href="#" class="btn btn-light border border-secondary py-2 icon-hover px-3"> <i class="me-1 fa fa-heart fa-lg"></i> Save </a>
           </div>
         </main>

@@ -28,4 +28,12 @@ Route::get('/shopping/showitems' , [Shopping::class, 'ShowListItemPhone'])->name
 Route::get('/shopping/showdetails/{id}' , [Shopping::class, 'ShowDetailsPhone'])->name('showdetails');
 
 
+Route::get('/shopping/add_to_cart/{id}' , [Shopping::class, 'Add_to_cart'])->name('add-to-cart');
+
+Route::get('language/{locale}', function ($locale) {
+    App::setLocale($locale);
+    session()->put('locale', $locale);
+    return redirect()->back();
+});
+
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class Shopping extends Controller
 {
@@ -34,21 +35,41 @@ class Shopping extends Controller
         $data->tax = $tax;
         $data->descount = 10;
         $data->net = $data->total - $data->descount;
+        // return $data;
 
         return view('shopping.details' , compact('data'));
     }
 
-    public function GetProducts(Request $request)
-    {
-        $category_list=['Electronics', 'Fashion', 'Home & Garden','Electronics','Beauty'];
-        $query = $request->search;
-        $products = productDetails::where('Productname', 'like', '%' . $query . '%')->get();
-        if ($products->isEmpty()) {
-            $products_details=productDetails::all();
-        }else{
-            $products_details=$products;
-        }
-        
-        return view('Dashboard.products',['products_details'=>$products_details, 'category_list'=>$category_list]);
+    
+    public function Add_to_cart(Request $request , $id){
+        $userid = $request->user()->id;
+        $data= DB::table('products')
+        ->join('product_details', 'products.id', '=', 'product_details.product_id')
+        ->where('product_details.id' , $id)
+        ->first();
+        $tax=0.15;
+        $descount = 10;
+        $data->total = $data->price * $tax + $data->price;
+        $data->tax = $tax;
+        $data->descount = 10;
+        $data->net = $data->total - $data->descount;
+
+        $row = [
+            'product_id'=>$data->id,
+            'price'=>$data->price,
+            'qty'=>$data->qty,
+            'tax'=>$data->tax,
+            'total'=>$data->total,
+            'discount'=>$data->descount,
+            'user_id'=>$userid,
+            'Net'=>$data->net,
+        ];
+
+        DB::table('carts')->insert($row);
+        $count = DB::table('carts')->where('user_id' , $userid)->count();
+        Session::put('count' , $count);
+        return redirect()->back()->with('message', 'Product Added To Cart');
+
     }
+
 }
