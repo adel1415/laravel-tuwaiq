@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Http;
 
 class Shopping extends Controller
 {
@@ -69,6 +70,26 @@ class Shopping extends Controller
         $count = DB::table('carts')->where('user_id' , $userid)->count();
         Session::put('count' , $count);
         return redirect()->back()->with('message', 'Product Added To Cart');
+
+    }
+
+    public function GetCoffee(){
+        $response = Http::get('https://api.sampleapis.com/coffee/hot');
+        $data = $response->object();
+
+        return view('shopping.cafe' , compact('data'));
+    }
+
+    public function GetUsersApi(){
+        $apiURL = 'https://v1.baseball.api-sports.io/leagues';
+        $headers = [
+            'Content-Type' => 'application/json',
+            'X-RapidAPI-Key' => '24c939c2ba293c859d5ecd476932d293',
+
+        ];
+        $response = Http::withHeaders($headers)->get($apiURL);
+        $data = $response->json();
+        return $data;
 
     }
 

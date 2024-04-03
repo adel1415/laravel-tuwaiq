@@ -6,4 +6,5 @@ return [
     'Dashboard' => 'Dashboard',
     'Team' => 'Team',
     'Buy_Now' => 'Buy Now',
+    'Projects' => 'Projects'
 ];

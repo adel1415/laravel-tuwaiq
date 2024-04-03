@@ -36,4 +36,7 @@ Route::get('language/{locale}', function ($locale) {
     return redirect()->back();
 });
 
+Route::get('get-coffee', [Shopping::class, 'GetCoffee'])->name('get-coffee');
+Route::get('get-users-api', [Shopping::class, 'GetUsersApi'])->name('get-users-api');
+
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

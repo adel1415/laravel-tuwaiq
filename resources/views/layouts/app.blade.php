@@ -58,7 +58,7 @@
             <a class="nav-link" href="#">{{__('message.Team')}}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Projects</a>
+            <a class="nav-link" href="#">{{__('message.Projects')}}</a>
           </li>
         </ul>
         <!-- Left links -->
@@ -80,8 +80,11 @@
               اللغة
             </a>
             <ul class="dropdown-menu">
+              @if(app()->getLocale() == 'ar')
+              <li><a class="dropdown-item text-center" href="{{url('language/en')}}">English <img src="\assets\images\en.jpg" class="rounded-circle" width="30" height="30"  alt=""> </a></li>
+              @else
               <li><a class="dropdown-item text-center" href="{{url('language/ar')}}">العربية   <img src="\assets\images\sa.jpg" class="rounded-circle" width="30" height="30"  alt="">  </a></li>
-              <li><a class="dropdown-item text-center" href="{{url('language/en')}}">English <img src="\assets\images\en.jpg" class="rounded-circle" width="30" height="30"  alt=""> </a></li>  
+              @endif
             </ul>
           </li>
         </div>
