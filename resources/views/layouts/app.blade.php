@@ -37,7 +37,7 @@
       >
         <i class="fas fa-bars"></i>
       </button>
-  
+
       <!-- Collapsible wrapper -->
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!-- Navbar brand -->
@@ -64,14 +64,14 @@
         <!-- Left links -->
       </div>
       <!-- Collapsible wrapper -->
-  
+
       <!-- Right elements -->
       <div class="d-flex align-items-center">
         <!-- Icon -->
         <a class="text-reset me-3" href="#">
           <i class="fas fa-shopping-cart"></i>
         </a>
-  
+
         <!-- Notifications -->
 
         <div class="dropdown me-3">
@@ -88,7 +88,7 @@
             </ul>
           </li>
         </div>
-        <div class="dropdown">
+        {{-- <div class="dropdown">
           <a
             data-mdb-dropdown-init
             class="text-reset me-3 dropdown-toggle hidden-arrow"
@@ -100,10 +100,23 @@
             <i class="fas fa-bell"></i>
             <span class="badge rounded-pill badge-notification bg-danger">{{Session::get('count')}}</span>
           </a>
-          
+
+        </div> --}}
+
+        <div class="dropdown me-3">
+            <li class="nav-item dropdown p-1" style="display: block">
+                <a class="nav-link dropdown-toggle" href="{{route('cart')}}" role="button"  aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
+                        <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+                      </svg><span class="glyphicon glyphicon-shopping-cart"></span> <span class="badge rounded-pill badge-notification bg-danger">{{Session::get('count')}}</span><span class="caret"></span>
+                </a>
+              </li>
         </div>
+
+
+          </div>
         <!-- Avatar -->
-        
+
         <div class="dropdown">
           <a
             data-mdb-dropdown-init
@@ -137,7 +150,7 @@
           </ul>
         </div>
 
-        
+
       </div>
       <!-- Right elements -->
     </div>

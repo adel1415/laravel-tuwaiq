@@ -4,14 +4,14 @@
 <section class="py-5">
     <div class="container">
       <div class="row gx-5">
-        
+
         <aside class="col-lg-6">
           <div class="border rounded-4 mb-3 d-flex justify-content-center">
             <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image">
-              <img style="max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit" src="/assets\images\{{$data->image}}.jpg" />
+              <img style="max-width: 90%; max-height: 90%; margin: auto;" class="rounded-4 fit" src="{{asset('images/'.$data->image)}}" />
             </a>
           </div>
-          
+
           <!-- thumbs-wrap.// -->
           <!-- gallery-wrap .end// -->
         </aside>
@@ -48,24 +48,24 @@
               <span class="text-muted"><i class="fas fa-shopping-basket fa-sm mx-1"></i>154 orders</span>
               <span class="text-success ms-2">In stock</span>
             </div>
-  
+
             <div class="mb-3">
               <span class="h5">${{$data->price}}.00</span>
               <span class="text-muted">/per box</span>
             </div>
 
-  
+
             <div class="row">
               <dt class="col-3">Type: </dt>
               <dd class="col-9">{{$data->ProductName}}</dd>
-  
+
               <dt class="col-3">Color</dt>
               <dd class="col-9">{{$data->color}}</dd>
 
             </div>
-  
+
             <hr />
-  
+
             <div class="row mb-4">
               <div class="col-md-4 col-6">
                 <label class="mb-2">Size</label>

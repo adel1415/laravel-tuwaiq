@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -41,7 +42,7 @@ class Shopping extends Controller
         return view('shopping.details' , compact('data'));
     }
 
-    
+
     public function Add_to_cart(Request $request , $id){
         $userid = $request->user()->id;
         $data= DB::table('products')
@@ -71,6 +72,22 @@ class Shopping extends Controller
         Session::put('count' , $count);
         return redirect()->back()->with('message', 'Product Added To Cart');
 
+    }
+
+    public function Cart(){
+        $userid = auth()->user()->id;
+        $data = DB::table('carts')
+        ->join('product_details' , 'product_details.id' , '=' , 'carts.product_id')
+        ->where('carts.user_id' , $userid)
+        ->get();
+
+        $total_price = DB::table('carts')
+        ->join('product_details' , 'product_details.id' , '=' , 'carts.product_id')
+        ->where('carts.user_id' , $userid)
+        ->sum('carts.price');
+
+
+        return view('shopping.cart' , compact('data' , 'total_price'));
     }
 
     public function GetCoffee(){

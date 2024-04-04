@@ -2,7 +2,7 @@
 
 @section('content')
 
-  
+
    <div class="container">
      <div class="row">
         <div class="col">
@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-3">
-                         <img src="/assets\images\{{$item->image}}.jpg" width="300" height="250">
+                         <img src="{{asset('images/'.$item->image)}}" width="300" height="250">
                         </div>
                         <div class="col-sm-6">
                             <h4 class="alert alert-success">{{$item->ProductName}}</h4>
@@ -28,7 +28,7 @@
                                 <li class=""> <small>Total {{$item->total}} SAR</small> </li>
                                 <li class=""> <small><p> Descount: <del> {{$item->descount}} SAR</del></p> </small> </li>
                                 <li class=""> <small>Net : {{$item->net}} SAR </small> </li>
-                               
+
                             </ul>
                             <div class="row">
                                 <div class="col">
@@ -36,12 +36,12 @@
                                 </div>
                             </div>
                         </div>
-                        
-                    </div>   
+
+                    </div>
                 </div>
             </div>
             @endforeach
-            
+
         </div>
      </div>
    </div>

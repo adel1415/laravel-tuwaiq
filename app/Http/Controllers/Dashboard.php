@@ -74,6 +74,7 @@ class Dashboard extends Controller
             'price' => 'required|numeric',
             'description' => 'required|max:255|string',
             'color' => 'required|max:255|string',
+            // 'image' => 'required|image|mimes:png,jpg,jpeg|max:2048',
         ]);
         $productsdetails = ProductDetails::create([
             'product_id' => $request->product_id,
@@ -82,6 +83,15 @@ class Dashboard extends Controller
             'color' => $request->color,
             'price' => $request->price,
         ]);
+
+        // return $request->hasfile('image');
+
+        $imageName = time().'.'.$request->image->extension();
+
+        $request->image->move(public_path('images'), $imageName);
+        $productsdetails->image = $imageName;
+        $productsdetails->save();
+
         return redirect()->back()->with('message', 'Product Details Created Successfully');
     }
     public function DeleteDetails($id){
@@ -90,5 +100,5 @@ class Dashboard extends Controller
         return redirect()->back();
     }
 
-    
+
 }

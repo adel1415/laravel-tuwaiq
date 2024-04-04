@@ -39,4 +39,6 @@ Route::get('language/{locale}', function ($locale) {
 Route::get('get-coffee', [Shopping::class, 'GetCoffee'])->name('get-coffee');
 Route::get('get-users-api', [Shopping::class, 'GetUsersApi'])->name('get-users-api');
 
+Route::get('cart' , [Shopping::class, 'Cart'])->name('cart');
+
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

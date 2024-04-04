@@ -37,7 +37,7 @@
 
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('createproductdetails') }}" method="POST">
+                                <form action="{{ route('createproductdetails') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="col">
                                         <label for="name" class="form-label text-dark">Product Name</label>
@@ -69,6 +69,9 @@
                                             <label for="price" class="form-label text-dark">Price</label>
                                             <input type="text" id="id" class="form-control" name="price" required>
                                         </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <input type="file" class="form-control" name="image" id="image" />
                                     </div>
                                     <button type="submit" class="btn btn-info mt-3">save</button>
                                     <button type="button" class="btn btn-secondary mt-3"
